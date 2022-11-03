@@ -15,7 +15,7 @@ let model;
 modelLoaded = false;
 (async function () {
     $('#load-model').show();
-    model = await tf.loadLayersModel('model/model.json');
+    model = await tf.loadLayersModel('model2/model.json');
     $('#load-model').hide();
     modelLoaded = true;
 })();
@@ -29,7 +29,7 @@ $("#predict-button").click(async function () {
  	let image = $('#selected-image').get(0);
 	
     let tensor = tf.browser.fromPixels(image)
-    	.resizeNearestNeighbor([224, 224]) 
+    	.resizeNearestNeighbor([64, 64]) 
     	.toFloat()
     	.expandDims();
         
