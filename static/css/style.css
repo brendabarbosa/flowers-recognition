@@ -2,7 +2,12 @@
     padding: 12px;
 }
 
-.first-class { 
-    font-size: 20px;
-    font-weight: 600;
+#load-image {
+    display: none;
+}
+
+#resultado {
+    font-size: 50px;
+    height: 300px;
+    text-align: center;
 }

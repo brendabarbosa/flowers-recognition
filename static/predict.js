@@ -6,7 +6,6 @@ $("#image-selector").change(function () {
 		$("#selected-image").attr("src", dataURL);
 		$("#prediction-list").empty();
 	}
-	
 	let file = $("#image-selector").prop('files')[0];
 	reader.readAsDataURL(file);
     imageLoaded = true;
@@ -15,9 +14,9 @@ $("#image-selector").change(function () {
 let model;
 modelLoaded = false;
 (async function () {
-    $('.progress-bar').show();
+    $('#load-model').show();
     model = await tf.loadLayersModel('model/model.json');
-    $('.progress-bar').hide();
+    $('#load-model').hide();
     modelLoaded = true;
 })();
 
@@ -26,14 +25,13 @@ $("#predict-button").click(async function () {
     if(!validate()){
         return;
     }
+    $("#load-image").show();
  	let image = $('#selected-image').get(0);
 	
-    // Pre-process the image
     let tensor = tf.browser.fromPixels(image)
-    	.resizeNearestNeighbor([224, 224]) // change the image size
+    	.resizeNearestNeighbor([224, 224]) 
     	.toFloat()
     	.expandDims();
-
         
     let predictions = await model.predict(tensor).data();
     predictions = Array.from(predictions)
@@ -44,14 +42,11 @@ $("#predict-button").click(async function () {
     		};
     	}).sort(function (a, b) {
     		return b.probability - a.probability;
-    	});
+    	})
 
-	$("#prediction-list").empty();
-    let firstClass = 'first-class';
-	predictions.forEach(function (p) {
-		$("#prediction-list").append(`<li class="${firstClass} list-group-item">${p.className}: ${p.probability.toFixed(2)}%</li>`);
-        firstClass = '';
-    });
+    $('#resultado div').html(predictions[0].className)
+    $("#load-image").hide();
+
 });
 
 

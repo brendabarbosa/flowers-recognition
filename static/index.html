@@ -22,7 +22,8 @@
         </nav>
         <div class="row">
             <div class="col-12">
-                <div class="progress progress-bar progress-bar-striped progress-bar-animated mb-2  bg-info">Carregando model</div>
+                <div id="load-model" class="progress progress-bar progress-bar-striped progress-bar-animated mb-2  bg-info">Carregando model</div>
+                <div id="load-image" class="progress progress-bar progress-bar-striped progress-bar-animated mb-2  bg-info">Identificando imagem</div>
             </div>
         </div>
         <div class="container mt-5">
@@ -42,8 +43,13 @@
                 </div>
                 <div class="col-6">
                     <h2 class="ml-3 mb-4">Categoria</h2>
-                    <ol id="prediction-list" class="list-group list-group-flush">
-                    </ol>
+                    <div class="row" id="resultado">
+                        <div class="col-md-12 m-auto">
+                                
+                        </div>
+                    </div>
+                    <!-- <ol id="prediction-list" class="list-group list-group-flush">
+                    </ol> -->
                 </div>
             </div>
         </div>
